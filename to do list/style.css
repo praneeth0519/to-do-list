@@ -1,0 +1,122 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    height: 100vh;
+    background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: fadeBG 10s infinite alternate;
+}
+
+@keyframes fadeBG {
+    0% { filter: hue-rotate(0deg); }
+    100% { filter: hue-rotate(90deg); }
+}
+
+.container {
+    width: 450px;
+    background: rgba(255,255,255,0.15);
+    padding: 30px;
+    border-radius: 20px;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 0 30px rgba(255,255,255,0.3);
+    color: white;
+}
+
+.title {
+    text-align: center;
+    margin-bottom: 20px;
+    animation: fadeDown 1s;
+}
+
+@keyframes fadeDown {
+    from { transform: translateY(-20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+/* Input Section */
+.input-section {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+input, select {
+    padding: 12px;
+    border-radius: 10px;
+    outline: none;
+    border: none;
+}
+
+button {
+    padding: 12px 18px;
+    border-radius: 10px;
+    border: none;
+    background: #ffd700;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+button:hover {
+    transform: scale(1.05);
+    background: #ffea85;
+}
+
+/* Filters */
+.filters {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.filters button {
+    padding: 8px 12px;
+    background: rgba(255,255,255,0.2);
+}
+
+/* Task List Styles */
+ul {
+    list-style: none;
+}
+
+li {
+    background: rgba(255,255,255,0.2);
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    animation: fadeIn 0.4s ease;
+}
+
+@keyframes fadeIn {
+    from { transform: translateX(-20px); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+.task-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.time {
+    font-size: 12px;
+    opacity: 0.8;
+}
+
+.priority {
+    font-size: 12px;
+    padding: 3px 8px;
+    border-radius: 5px;
+    margin-top: 5px;
+}
+
+/* Priority Col*

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pro To-Do List</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <div class="container">
+
+        <h1 class="title">✨ Pro To-Do Manager</h1>
+
+        <!-- Add Task Section -->
+        <div class="input-section">
+            <input id="taskInput" type="text" placeholder="Add a new task..." />
+
+            <select id="priority">
+                <option value="Low">Low</option>    
+                <option value="Medium">Medium</option>
+                <option value="High">High 🔥</option>
+            </select>
+
+            <button onclick="addTask()">Add</button>
+        </div>
+
+        <!-- Filters -->
+        <div class="filters">
+            <button onclick="filterTasks('all')">All</button>
+            <button onclick="filterTasks('pending')">Pending</button>
+            <button onclick="filterTasks('completed')">Completed</button>
+            <button onclick="filterTasks('high')">High Priority</button>
+        </div>
+
+        <!-- Task List -->
+        <ul id="taskList"></ul>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
