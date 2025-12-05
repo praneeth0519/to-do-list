@@ -29,17 +29,6 @@ body {
     color: white;
 }
 
-.title {
-    text-align: center;
-    margin-bottom: 20px;
-    animation: fadeDown 1s;
-}
-
-@keyframes fadeDown {
-    from { transform: translateY(-20px); opacity: 0; }
-    to { transform: translateY(0); opacity: 1; }
-}
-
 /* Input Section */
 .input-section {
     display: flex;
@@ -61,12 +50,12 @@ button {
     background: #ffd700;
     font-weight: bold;
     cursor: pointer;
-    transition: 0.2s;
+    transition: 0.3s ease;
 }
 
 button:hover {
-    transform: scale(1.05);
-    background: #ffea85;
+    transform: scale(1.07);
+    background: #fff7a5;
 }
 
 /* Filters */
@@ -81,7 +70,7 @@ button:hover {
     background: rgba(255,255,255,0.2);
 }
 
-/* Task List Styles */
+/* Task List */
 ul {
     list-style: none;
 }
@@ -94,29 +83,50 @@ li {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    transition: 0.35s ease;
     animation: fadeIn 0.4s ease;
 }
 
+li:hover {
+    transform: scale(1.02);
+    background: rgba(255,255,255,0.3);
+    box-shadow: 0 0 10px rgba(255,255,255,0.4);
+}
+
 @keyframes fadeIn {
-    from { transform: translateX(-20px); opacity: 0; }
-    to { transform: translateX(0); opacity: 1; }
+    from { transform: translateY(15px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
 }
 
-.task-info {
-    display: flex;
-    flex-direction: column;
+.completed {
+    text-decoration: line-through;
+    opacity: 0.7;
+    color: #d4ffd4;
+    transition: 0.4s ease;
 }
 
-.time {
-    font-size: 12px;
-    opacity: 0.8;
+.complete-animation {
+    background: rgba(0,255,0,0.25) !important;
+    box-shadow: 0 0 15px rgba(0,255,0,0.4);
 }
 
-.priority {
-    font-size: 12px;
-    padding: 3px 8px;
-    border-radius: 5px;
-    margin-top: 5px;
+.delete-animation {
+    animation: deleteAnim 0.45s forwards;
 }
 
-/* Priority Col*
+@keyframes deleteAnim {
+    0% { opacity: 1; transform: translateX(0); }
+    100% { opacity: 0; transform: translateX(50px); }
+}
+
+/* Buttons */
+.actions span {
+    margin-left: 14px;
+    cursor: pointer;
+    font-size: 18px;
+    transition: 0.25s ease;
+}
+
+.actions span:hover {
+    transform: scale(1.4);
+}
