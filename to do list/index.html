@@ -1,42 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Pro To-Do List</title>
-    <link rel="stylesheet" href="style.css" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Smooth Pro To-Do</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
-
 <body>
-    <div class="container">
+  <div class="app">
+    <header>
+      <h1>✨ Smooth To-Do</h1>
+      <div class="controls">
+        <button id="themeToggle" aria-label="Toggle theme">🌙</button>
+      </div>
+    </header>
 
-        <h1 class="title">✨ Pro To-Do Manager</h1>
+    <section class="add-panel">
+      <input id="taskInput" type="text" placeholder="Add a task..." aria-label="Task text" />
+      <select id="category">
+        <option value="Misc">📦 Misc</option>
+        <option value="Work">💼 Work</option>
+        <option value="Study">📚 Study</option>
+        <option value="Personal">🏠 Personal</option>
+      </select>
+      <select id="priority" aria-label="Priority">
+        <option value="Low">Low</option>
+        <option value="Medium">Medium</option>
+        <option value="High">High 🔥</option>
+      </select>
+      <button id="addBtn" class="primary">Add</button>
+    </section>
 
-        <!-- Add Task Section -->
-        <div class="input-section">
-            <input id="taskInput" type="text" placeholder="Add a new task..." />
+    <section class="filter-panel" role="toolbar" aria-label="Filters">
+      <div class="filters-left">
+        <select id="viewFilter" aria-label="View filter">
+          <option value="all">All</option>
+          <option value="pending">Pending</option>
+          <option value="completed">Completed</option>
+        </select>
 
-            <select id="priority">
-                <option value="Low">Low</option>    
-                <option value="Medium">Medium</option>
-                <option value="High">High 🔥</option>
-            </select>
+        <select id="categoryFilter" aria-label="Category filter">
+          <option value="all">All Categories</option>
+          <option value="Work">Work</option>
+          <option value="Study">Study</option>
+          <option value="Personal">Personal</option>
+          <option value="Misc">Misc</option>
+        </select>
+      </div>
 
-            <button onclick="addTask()">Add</button>
-        </div>
+      <div class="filters-right">
+        <button id="clearCompleted">Clear Completed</button>
+        <button id="clearAll">Clear All</button>
+      </div>
+    </section>
 
-        <!-- Filters -->
-        <div class="filters">
-            <button onclick="filterTasks('all')">All</button>
-            <button onclick="filterTasks('pending')">Pending</button>
-            <button onclick="filterTasks('completed')">Completed</button>
-            <button onclick="filterTasks('high')">High Priority</button>
-        </div>
+    <main>
+      <ul id="taskList" class="task-list" aria-live="polite"></ul>
+    </main>
 
-        <!-- Task List -->
-        <ul id="taskList"></ul>
-    </div>
+    <footer>
+      <small>Local only • Drag to reorder • Swipe to delete • Smooth UX</small>
+    </footer>
+  </div>
 
-    <script src="script.js"></script>
+  <!-- canvas for confetti -->
+  <canvas id="confettiCanvas" class="confetti"></canvas>
+
+  <script src="script.js"></script>
 </body>
 </html>
