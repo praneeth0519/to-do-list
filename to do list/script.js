@@ -9,13 +9,11 @@ function addTask() {
         return;
     }
 
-    let time = new Date().toLocaleString();
-
     const task = {
-        id: Date.now(),  // unique ID
+        id: Date.now(),
         text,
         priority,
-        time,
+        time: new Date().toLocaleString(),
         completed: false
     };
 
@@ -25,6 +23,7 @@ function addTask() {
     document.getElementById("taskInput").value = "";
 }
 
+/* Create UI Item */
 function createTaskElement(task) {
     let ul = document.getElementById("taskList");
 
@@ -55,7 +54,7 @@ function createTaskElement(task) {
 
     let done = document.createElement("span");
     done.textContent = "✔";
-    done.onclick = () => toggleComplete(task.id);
+    done.onclick = () => smoothComplete(task.id, li);
 
     let edit = document.createElement("span");
     edit.textContent = "✎";
@@ -63,7 +62,7 @@ function createTaskElement(task) {
 
     let del = document.createElement("span");
     del.textContent = "✖";
-    del.onclick = () => deleteTask(task.id);
+    del.onclick = () => smoothDelete(task.id, li);
 
     actions.appendChild(done);
     actions.appendChild(edit);
@@ -75,8 +74,25 @@ function createTaskElement(task) {
     ul.appendChild(li);
 }
 
-/* ---------- STORAGE ---------- */
+/* ------------- SMOOTH COMPLETE ------------- */
+function smoothComplete(id, li) {
+    li.classList.add("complete-animation");
 
+    setTimeout(() => {
+        toggleComplete(id);
+    }, 350);
+}
+
+/* ------------- SMOOTH DELETE ------------- */
+function smoothDelete(id, li) {
+    li.classList.add("delete-animation");
+
+    setTimeout(() => {
+        deleteTask(id);
+    }, 400);
+}
+
+/* STORAGE FUNCTIONS */
 function saveTask(task) {
     let tasks = getTasks();
     tasks.push(task);
@@ -90,11 +106,10 @@ function getTasks() {
 function loadTasks() {
     let tasks = getTasks();
     document.getElementById("taskList").innerHTML = "";
-    tasks.forEach(t => createTaskElement(t));
+    tasks.forEach(createTaskElement);
 }
 
-/* ---------- ACTIONS ---------- */
-
+/* BASIC LOGIC */
 function toggleComplete(id) {
     let tasks = getTasks();
     tasks = tasks.map(t => {
@@ -116,7 +131,7 @@ function editTask(id) {
     let tasks = getTasks();
     let task = tasks.find(t => t.id === id);
 
-    let newText = prompt("Edit task:", task.text);
+    let newText = prompt("Edit Task:", task.text);
     if (!newText) return;
 
     task.text = newText;
@@ -124,17 +139,18 @@ function editTask(id) {
     loadTasks();
 }
 
-/* ---------- FILTERS ---------- */
-
+/* FILTERS */
 function filterTasks(type) {
     let tasks = getTasks();
-    let filtered = [];
 
-    if (type === "all") filtered = tasks;
-    if (type === "pending") filtered = tasks.filter(t => !t.completed);
-    if (type === "completed") filtered = tasks.filter(t => t.completed);
-    if (type === "high") filtered = tasks.filter(t => t.priority === "High");
+    let filtered = {
+        all: tasks,
+        pending: tasks.filter(t => !t.completed),
+        completed: tasks.filter(t => t.completed),
+        high: tasks.filter(t => t.priority === "High")
+    }[type];
 
     document.getElementById("taskList").innerHTML = "";
     filtered.forEach(createTaskElement);
 }
+
