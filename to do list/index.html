@@ -1,71 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Smooth Pro To-Do</title>
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium To-Do List</title>
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-  <div class="app">
-    <header>
-      <h1>✨ Smooth To-Do</h1>
-      <div class="controls">
-        <button id="themeToggle" aria-label="Toggle theme">🌙</button>
-      </div>
-    </header>
+    <div class="todo-card">
+        <h2 class="title">My Tasks</h2>
 
-    <section class="add-panel">
-      <input id="taskInput" type="text" placeholder="Add a task..." aria-label="Task text" />
-      <select id="category">
-        <option value="Misc">📦 Misc</option>
-        <option value="Work">💼 Work</option>
-        <option value="Study">📚 Study</option>
-        <option value="Personal">🏠 Personal</option>
-      </select>
-      <select id="priority" aria-label="Priority">
-        <option value="Low">Low</option>
-        <option value="Medium">Medium</option>
-        <option value="High">High 🔥</option>
-      </select>
-      <button id="addBtn" class="primary">Add</button>
-    </section>
+        <div class="input-area">
+            <input id="taskInput" type="text" placeholder="Write a task..." maxlength="40">
+            <button onclick="addTask()">+</button>
+        </div>
 
-    <section class="filter-panel" role="toolbar" aria-label="Filters">
-      <div class="filters-left">
-        <select id="viewFilter" aria-label="View filter">
-          <option value="all">All</option>
-          <option value="pending">Pending</option>
-          <option value="completed">Completed</option>
-        </select>
+        <div class="char-count"><span id="count">0</span>/40</div>
 
-        <select id="categoryFilter" aria-label="Category filter">
-          <option value="all">All Categories</option>
-          <option value="Work">Work</option>
-          <option value="Study">Study</option>
-          <option value="Personal">Personal</option>
-          <option value="Misc">Misc</option>
-        </select>
-      </div>
+        <ul id="taskList"></ul>
+    </div>
 
-      <div class="filters-right">
-        <button id="clearCompleted">Clear Completed</button>
-        <button id="clearAll">Clear All</button>
-      </div>
-    </section>
-
-    <main>
-      <ul id="taskList" class="task-list" aria-live="polite"></ul>
-    </main>
-
-    <footer>
-      <small>Local only • Drag to reorder • Swipe to delete • Smooth UX</small>
-    </footer>
-  </div>
-
-  <!-- canvas for confetti -->
-  <canvas id="confettiCanvas" class="confetti"></canvas>
-
-  <script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
